@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Bancário</title>
+    <!-- Link para Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link para jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Link para Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Sistema Bancário</h1>
+        
+        <!-- Barra de navegação -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Banco Pezagna</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Formulário de operações bancárias -->
+        <form method="POST">
+            <div class="form-group">
+                <label for="opcao">Selecione uma operação:</label>
+                <select name="opcao" id="opcao" class="form-control" required>
+                    <option value="d">Depositar</option>
+                    <option value="s">Sacar</option>
+                    <option value="e">Extrato</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="valor">Valor:</label>
+                <input type="number" step="0.01" name="valor" id="valor" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+
+        <!-- Mensagem de erro -->
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+        
+        <!-- Seção de extrato e saldo -->
+        <hr>
+        <h3>Extrato</h3>
+        <pre>{{ extrato if extrato else "Não foram realizadas movimentações." }}</pre>
+        
+        <h3>Saldo</h3>
+        <p>R$ {{ saldo | round(2) }}</p>
+
+
+    </div>
+</body>
+
+</html>
